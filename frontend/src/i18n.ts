@@ -2,7 +2,7 @@ export type Lang = 'es' | 'en'
 
 const es = {
   locale: 'es-CO',
-  nav: { how: '¿Cómo funciona?', groups: 'Tus grupos' },
+  nav: { how: '¿Cómo funciona?', groups: 'Tus grupos', dark: 'Cambiar a modo oscuro', light: 'Cambiar a modo claro' },
   hero: {
     title1: 'Cuentas claras,',
     title2: 'chocolate espeso.',
@@ -90,7 +90,7 @@ const es = {
 
 const en: typeof es = {
   locale: 'en-US',
-  nav: { how: 'How it works', groups: 'Your groups' },
+  nav: { how: 'How it works', groups: 'Your groups', dark: 'Switch to dark mode', light: 'Switch to light mode' },
   hero: {
     title1: 'Clear accounts,',
     title2: 'thick chocolate.',

@@ -47,8 +47,8 @@ export function HeroDemo({ t }: { t: Texts }) {
           </span>
         </div>
         <ul className="lines">
-          {shown.map(([what, who, amount]) => (
-            <li key={what}>
+          {d.items.map(([what, who, amount], i) => (
+            <li key={what} className={i < shown.length ? 'on' : ''}>
               <span>{what}<small>{t.group.paidByShort(d.members[who])}</small></span>
               <b>{money(amount)}</b>
             </li>
@@ -61,8 +61,8 @@ export function HeroDemo({ t }: { t: Texts }) {
         <div className="perf" />
         <p className="who">{t.group.settleTitle}</p>
         <ul className="moves">
-          {settled && d.moves.map(([from, to, amount]) => (
-            <li key={from}>
+          {d.moves.map(([from, to, amount]) => (
+            <li key={from} className={settled ? 'on' : ''}>
               <i className={`avatar a${from}`}>{d.members[from][0]}</i>
               <span className="arrow-line" />
               <i className={`avatar a${to}`}>{d.members[to][0]}</i>
