@@ -74,7 +74,10 @@ export function Home({ t }: { t: Texts }) {
 
       <section className="wrap">
         <form className="card create" onSubmit={submit} noValidate>
-          <h2>{t.create.title}</h2>
+          <div className="create-head">
+            <h2>{t.create.title}</h2>
+            <p className="note">{t.create.note}</p>
+          </div>
           <div className="row">
             <label className="field grow">
               <span>{t.create.name}</span>
@@ -83,7 +86,7 @@ export function Home({ t }: { t: Texts }) {
             <label className="field">
               <span>{t.create.currency}</span>
               <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
-                {Object.keys(CURRENCIES).map((c) => <option key={c}>{c}</option>)}
+                {Object.keys(CURRENCIES).map((c) => <option key={c} value={c}>{c} · {t.create.currencies[c]}</option>)}
               </select>
             </label>
           </div>
@@ -91,8 +94,9 @@ export function Home({ t }: { t: Texts }) {
           <div className="field">
             <label htmlFor="member-input">{t.create.members}</label>
             <div className="chips-input">
-              {members.map((m) => (
+              {members.map((m, i) => (
                 <span className="chip" key={m}>
+                  <i className={`avatar a${i % 5}`} aria-hidden>{m[0].toUpperCase()}</i>
                   {m}
                   <button type="button" aria-label={t.create.remove(m)} onClick={() => setMembers(members.filter((x) => x !== m))}>×</button>
                 </span>
@@ -103,9 +107,16 @@ export function Home({ t }: { t: Texts }) {
             </div>
           </div>
 
+          <div className="tear" aria-hidden />
           {error && <p className="error" role="alert">{error}</p>}
           {waking && <p className="hint" role="status">{t.waking}</p>}
-          <button className="btn primary" disabled={busy}>{busy ? t.create.creating : t.create.submit}</button>
+          <div className="create-foot">
+            <button className="btn primary" disabled={busy}>
+              {busy ? t.create.creating : t.create.submit}
+              {!busy && <span className="go" aria-hidden>→</span>}
+            </button>
+            <p className="hint">{t.create.later}</p>
+          </div>
         </form>
 
         {recent.length > 0 && (

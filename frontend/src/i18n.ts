@@ -12,6 +12,9 @@ const es = {
   },
   create: {
     title: 'Arma tu grupo',
+    note: 'Tarda menos que pedir la cuenta.',
+    later: 'Después puedes sumar a más gente.',
+    currencies: { COP: 'Peso colombiano', USD: 'Dólar', EUR: 'Euro', MXN: 'Peso mexicano', PEN: 'Sol peruano', CLP: 'Peso chileno', ARS: 'Peso argentino' } as Record<string, string>,
     name: 'Nombre del grupo',
     namePh: 'Paseo a Guatapé',
     currency: 'Moneda',
@@ -86,6 +89,9 @@ const en: typeof es = {
   },
   create: {
     title: 'Start your group',
+    note: 'Quicker than asking for the bill.',
+    later: 'You can add more people later.',
+    currencies: { COP: 'Colombian peso', USD: 'US dollar', EUR: 'Euro', MXN: 'Mexican peso', PEN: 'Peruvian sol', CLP: 'Chilean peso', ARS: 'Argentine peso' },
     name: 'Group name',
     namePh: 'Beach weekend',
     currency: 'Currency',
