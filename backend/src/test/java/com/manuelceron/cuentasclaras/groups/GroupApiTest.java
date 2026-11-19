@@ -26,6 +26,9 @@ class GroupApiTest {
     @Autowired
     WebApplicationContext context;
 
+    @Autowired
+    BillGroupRepository groups;
+
     MockMvc mvc;
 
     @BeforeEach
@@ -88,6 +91,20 @@ class GroupApiTest {
                 .andExpect(jsonPath("$.expenses.length()").value(0))
                 .andExpect(jsonPath("$.settlements.length()").value(0));
         mvc.perform(delete("/api/groups/" + code + "/expenses/" + expense)).andExpect(status().isNotFound());
+    }
+
+    @Test
+    void deletingAGroupRemovesEverythingUnderIt() throws Exception {
+        String code = createTrip("COP");
+        long ana = memberId(code, 0), beto = memberId(code, 1);
+        post_("/api/groups/" + code + "/expenses",
+                "{\"description\":\"Lancha\",\"amount\":90000,\"payerId\":" + ana + ",\"participantIds\":[" + ana + "," + beto + "]}")
+                .andExpect(status().isCreated());
+
+        groups.deleteById(code);
+        groups.flush();
+
+        mvc.perform(get("/api/groups/" + code)).andExpect(status().isNotFound());
     }
 
     @Test

@@ -1,3 +1,4 @@
+-- Deleting a group removes everything under it: members, expenses and their splits all cascade.
 -- Money is stored in minor units (cents, or whole pesos for COP) as bigint, never as floating point.
 create table bill_groups (
     code       varchar(12) primary key,
@@ -19,7 +20,7 @@ create table expenses (
     group_code   varchar(12) not null references bill_groups (code) on delete cascade,
     description  varchar(80) not null,
     amount_minor bigint      not null check (amount_minor > 0),
-    payer_id     bigint      not null references members (id),
+    payer_id     bigint      not null references members (id) on delete cascade,
     created_at   timestamp with time zone not null
 );
 
@@ -27,6 +28,6 @@ create index idx_expenses_group on expenses (group_code);
 
 create table expense_participants (
     expense_id bigint not null references expenses (id) on delete cascade,
-    member_id  bigint not null references members (id),
+    member_id  bigint not null references members (id) on delete cascade,
     primary key (expense_id, member_id)
 );
