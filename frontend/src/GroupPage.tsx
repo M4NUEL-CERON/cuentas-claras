@@ -82,7 +82,7 @@ function Ledger({ group, setGroup, t }: { group: Group; setGroup: (g: Group) => 
               <p className="empty">{t.group.noExpenses}</p>
             ) : group.settlements.length === 0 ? (
               <div className="clear">
-                <Mascot className="clear-mascot" />
+                <Mascot className="clear-mascot jump" mood="party" />
                 <p>{t.group.allClear}</p>
               </div>
             ) : (

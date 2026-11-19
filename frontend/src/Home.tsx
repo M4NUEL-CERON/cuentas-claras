@@ -2,7 +2,7 @@ import { useState, type FormEvent, type KeyboardEvent } from 'react'
 import { api, recentGroups, rememberGroup, ApiError } from './api'
 import { navigate } from './App'
 import type { Texts } from './i18n'
-import { Mascot } from './Mascot'
+import { HeroDemo } from './HeroDemo'
 import { CURRENCIES } from './money'
 
 export function Home({ t }: { t: Texts }) {
@@ -66,10 +66,7 @@ export function Home({ t }: { t: Texts }) {
             {t.hero.badges.map((b) => <li key={b}>{b}</li>)}
           </ul>
         </div>
-        <div className="hero-art">
-          <p className="scribble">{t.hero.note}</p>
-          <Mascot className="hero-mascot" />
-        </div>
+        <HeroDemo t={t} />
       </section>
 
       <section className="wrap">

@@ -166,7 +166,6 @@ button, input, select { font: inherit; color: inherit; }
 
 @media (max-width: 820px) {
   .hero { grid-template-columns: 1fr; padding-top: 16px; }
-  .hero-art { width: min(80%, 300px); order: -1; }
   .scribble { position: static; transform: rotate(-3deg); text-align: center; max-width: none; margin-bottom: 6px; font-size: 1.3rem; }
   .how ol, .columns { grid-template-columns: 1fr; }
   .share { justify-items: start; text-align: left; }
@@ -215,3 +214,64 @@ button, input, select { font: inherit; color: inherit; }
 @keyframes wink-open { 0%, 88%, 100% { transform: scaleY(1); } 90%, 96% { transform: scaleY(0.1); opacity: 0; } }
 @keyframes wink-shut { 0%, 88%, 100% { opacity: 0; } 90%, 96% { opacity: 1; } }
 .brand-mascot .wink-open, .brand-mascot .wink-shut { animation: none; }
+
+/* ---------- hero demo: a receipt that fills itself in ---------- */
+.hero-art { position: relative; justify-self: center; width: min(100%, 420px); padding: 34px 0 64px; }
+.receipt { position: relative; width: calc(100% - 70px); padding: 22px 22px 26px; background: var(--paper); border-radius: 16px 16px 0 0;
+  transform: rotate(-2.5deg); filter: drop-shadow(0 14px 22px rgb(59 36 23 / 0.16)); animation: unroll 0.6s var(--ease); font-variant-numeric: tabular-nums; }
+/* zigzag torn bottom edge */
+.receipt::after { content: ''; position: absolute; left: 0; right: 0; bottom: -10px; height: 10px;
+  background: linear-gradient(-45deg, transparent 7px, var(--paper) 0) 0 0 / 14px 10px repeat-x, linear-gradient(45deg, transparent 7px, var(--paper) 0) 0 0 / 14px 10px repeat-x; }
+@keyframes unroll { from { opacity: 0; transform: rotate(-2.5deg) translateY(-12px); } }
+.receipt-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 2px dashed var(--line); }
+.receipt-head b { font: 800 1.15rem/1.1 var(--display); }
+.faces { display: flex; }
+.faces .avatar { margin-left: -6px; box-shadow: 0 0 0 2px var(--paper); }
+.lines, .moves { list-style: none; margin: 0; padding: 0; }
+.lines { min-height: 150px; padding: 8px 0; }
+.lines li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 7px 0; animation: drop-in 0.45s var(--ease); }
+.lines li span { font-weight: 700; }
+.lines small { display: block; font-weight: 500; color: var(--muted); font-size: 0.8rem; }
+@keyframes drop-in { from { opacity: 0; transform: translateY(-10px) scale(0.97); } }
+.sum { display: flex; justify-content: space-between; align-items: baseline; padding-top: 10px; border-top: 2px solid var(--ink); }
+.sum span { font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+.sum b { font: 800 1.35rem/1 var(--display); }
+.perf { margin: 16px -22px 12px; border-top: 2px dashed var(--line); }
+.who { margin: 0 0 8px; font: 600 0.95rem/1.2 var(--display); color: var(--muted); }
+.moves { min-height: 76px; }
+.moves li { display: flex; align-items: center; gap: 8px; padding: 5px 0; animation: drop-in 0.45s var(--ease) backwards; }
+.moves li + li { animation-delay: 0.2s; }
+.moves b { margin-left: auto; font: 800 1.05rem/1 var(--display); color: var(--mint); }
+.arrow-line { position: relative; width: 46px; height: 2px; background: var(--ink); transform-origin: left; animation: draw 0.5s var(--ease) 0.15s backwards; }
+.arrow-line::after { content: ''; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left: 7px solid var(--ink); border-right: 0; }
+@keyframes draw { from { transform: scaleX(0); } }
+.stamp { position: absolute; right: 14px; bottom: 34px; padding: 6px 14px; border: 3px solid var(--mint); border-radius: 10px; color: var(--mint);
+  font: 800 1.25rem/1 var(--display); background: rgb(223 243 233 / 0.85); transform: rotate(-12deg); animation: stamp 0.45s cubic-bezier(0.3, 1.6, 0.5, 1); }
+@keyframes stamp { from { opacity: 0; transform: rotate(-12deg) scale(2.2); } }
+
+.chocolo { position: absolute; right: -14px; bottom: 0; width: 170px; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 40%; }
+.chocolo svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chocolo:hover svg { transform: rotate(-3deg); transition: transform 0.2s var(--ease); }
+.pupils { transform: translate(var(--ex, 0), var(--ey, 0)); transition: transform 0.18s ease-out; }
+.jump .bod { animation: jump 0.8s cubic-bezier(0.3, 1.4, 0.5, 1) 2; transform-origin: 130px 214px; }
+@keyframes jump { 30% { transform: translateY(-16px) scaleY(1.04); } 60% { transform: translateY(0) scaleY(0.95); } }
+
+.beans { position: absolute; inset: 0 -20px 0 -20px; pointer-events: none; overflow: visible; }
+.bean { position: absolute; top: 0; left: var(--x); width: 12px; height: 16px; border-radius: 50%; background: #6b3a22;
+  animation: fall 1.6s cubic-bezier(0.3, 0.6, 0.6, 1) var(--d) both; }
+.bean::after { content: ''; position: absolute; left: 50%; top: 3px; bottom: 3px; width: 2px; margin-left: -1px; border-radius: 2px; background: #c08a5d; }
+.bean.k1 { width: 9px; height: 9px; background: var(--honey); } .bean.k1::after { display: none; }
+.bean.k2 { width: 8px; height: 14px; border-radius: 4px; background: #7cc9a6; } .bean.k2::after { display: none; }
+@keyframes fall { from { opacity: 0; transform: translate(0, -20px) rotate(0); } 15% { opacity: 1; } to { opacity: 0; transform: translate(var(--dx), 330px) rotate(var(--r)); } }
+
+@media (max-width: 820px) {
+  .hero-art { order: 0; width: min(100%, 400px); }
+  .chocolo { width: 140px; right: -6px; }
+  .receipt { width: calc(100% - 50px); }
+}
+.hero-art { padding: 44px 0 112px; }
+.hero-art .scribble { top: 0; left: 4px; max-width: none; white-space: nowrap; }
+.chocolo { bottom: -26px; }
+.stamp { right: auto; left: 14px; bottom: -20px; }
+@media (max-width: 820px) { .hero-art .scribble { position: absolute; white-space: normal; } }
+.stamp { z-index: 2; }

@@ -27,6 +27,17 @@ const es = {
     submit: 'Crear grupo',
     creating: 'Creando…',
   },
+  demo: {
+    group: 'Paseo a Guatapé',
+    currency: 'COP',
+    members: ['Ana', 'Beto', 'Cami'],
+    items: [['Lancha', 0, 90000], ['Almuerzo', 1, 30000], ['Gasolina', 2, 30000]] as [string, number, number][],
+    // 150.000 between three is 50.000 each: Ana is owed 40.000, Beto and Cami owe 20.000
+    moves: [[1, 0, 20000], [2, 0, 20000]] as [number, number, number][],
+    total: 'Total',
+    stamp: '¡Cuentas claras!',
+    poke: 'Saluda a Chocolo',
+  },
   how: {
     title: '¿Cómo funciona?',
     steps: [
@@ -103,6 +114,16 @@ const en: typeof es = {
     duplicate: 'That name is already in the group.',
     submit: 'Create group',
     creating: 'Creating…',
+  },
+  demo: {
+    group: 'Beach weekend',
+    currency: 'USD',
+    members: ['Ana', 'Ben', 'Cam'],
+    items: [['Boat ride', 0, 90], ['Lunch', 1, 30], ['Gas', 2, 30]],
+    moves: [[1, 0, 20], [2, 0, 20]],
+    total: 'Total',
+    stamp: 'All square!',
+    poke: 'Say hi to Chocolo',
   },
   how: {
     title: 'How it works',
