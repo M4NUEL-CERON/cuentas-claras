@@ -25,8 +25,14 @@ export function Mascot({ className, mood = 'happy' }: { className?: string; mood
       {/* eyes */}
       {mood === 'happy' ? (
         <>
-          <path d="M92 64c4-6 12-6 16 0" />
-          <path d="M152 64c4-6 12-6 16 0" />
+          <circle cx="100" cy="64" r="6.5" fill={INK} stroke="none" />
+          <circle cx="102.5" cy="61.5" r="2" fill="#fff" stroke="none" />
+          {/* right eye: open most of the time, winks shut every few seconds */}
+          <g className="wink-open">
+            <circle cx="160" cy="64" r="6.5" fill={INK} stroke="none" />
+            <circle cx="162.5" cy="61.5" r="2" fill="#fff" stroke="none" />
+          </g>
+          <path className="wink-shut" d="M151 66c4-7 14-7 18 0" />
         </>
       ) : (
         <>
