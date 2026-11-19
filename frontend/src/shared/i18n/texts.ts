@@ -1,3 +1,4 @@
+// Every string the UI shows, per language. `en` is typed from `es`, so a missing key fails the build.
 export type Lang = 'es' | 'en'
 
 const es = {
@@ -177,11 +178,3 @@ const en: typeof es = {
 
 export const texts = { es, en }
 export type Texts = typeof es
-
-export function initialLang(): Lang {
-  try {
-    const saved = localStorage.getItem('lang')
-    if (saved === 'es' || saved === 'en') return saved
-  } catch { /* storage blocked: fall back to the browser language */ }
-  return navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en'
-}

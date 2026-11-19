@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import type { Texts } from './i18n'
-import { Beans, Mascot } from './Mascot'
-import { formatMoney } from './money'
+import type { Texts } from '../../shared/i18n/texts'
+import { formatMoney } from '../../shared/lib/money'
+import { Beans } from '../../shared/ui/Beans'
+import { Mascot } from '../../shared/ui/Mascot'
 
 // How long each step of the demo stays before the next one; the last step is the hold before it restarts.
 const STEPS = [700, 1100, 1100, 1100, 1000, 1300, 4200]
@@ -39,7 +40,7 @@ export function HeroDemo({ t }: { t: Texts }) {
   return (
     <div className="hero-art">
       <p className="scribble">{t.hero.note}</p>
-      <div className={`receipt${step === 0 ? ' fresh' : ''}`} key={round} aria-hidden="true">
+      <div className="receipt" key={round} aria-hidden="true">
         <div className="receipt-head">
           <b>{d.group}</b>
           <span className="faces">

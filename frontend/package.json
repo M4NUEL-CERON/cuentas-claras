@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "test": "node --test src/money.test.ts"
+    "test": "node --test src/shared/lib/money.test.ts"
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "5.3.0",

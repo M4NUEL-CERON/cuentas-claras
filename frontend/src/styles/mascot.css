@@ -1,0 +1,38 @@
+/* Chocolo the capybara: steam, winks, eyes that follow the pointer, the celebration jump and the cacao beans. */
+.mascot { filter: var(--mascot-outline); }
+
+.steam { animation: steam 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: bottom; }
+.steam.s2 { animation-delay: 1.1s; }
+@keyframes steam { 0%, 100% { opacity: 0.25; transform: translateY(4px); } 50% { opacity: 1; transform: translateY(-4px); } }
+
+/* the open eye squashes shut while the closed arc fades in */
+.wink-open { transform-box: fill-box; transform-origin: center; animation: wink-open 6s ease-in-out infinite 1.5s; }
+.wink-shut { opacity: 0; animation: wink-shut 6s ease-in-out infinite 1.5s; }
+@keyframes wink-open { 0%, 88%, 100% { transform: scaleY(1); } 90%, 96% { transform: scaleY(0.1); opacity: 0; } }
+@keyframes wink-shut { 0%, 88%, 100% { opacity: 0; } 90%, 96% { opacity: 1; } }
+.brand-mascot .wink-open, .brand-mascot .wink-shut { animation: none; }
+
+/* --ex/--ey are set from JS as the pointer moves */
+.pupils { transform: translate(var(--ex, 0), var(--ey, 0)); transition: transform 0.18s ease-out; }
+
+.jump .bod { animation: jump 0.8s cubic-bezier(0.3, 1.4, 0.5, 1) 2; transform-origin: 130px 214px; }
+@keyframes jump { 30% { transform: translateY(-16px) scaleY(1.04); } 60% { transform: translateY(0) scaleY(0.95); } }
+
+.bob { animation: bob 2.4s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(-6px); } }
+
+/* a burst of beans and sprinkles; each one reads its position, delay and spin from inline custom properties */
+.beans { position: absolute; inset: 0 -20px; pointer-events: none; overflow: visible; }
+.bean {
+  position: absolute; top: 0; left: var(--x); width: 12px; height: 16px; border-radius: 50%; background: #6b3a22;
+  animation: fall 1.6s cubic-bezier(0.3, 0.6, 0.6, 1) var(--d) both;
+}
+.bean::after { content: ''; position: absolute; left: 50%; top: 3px; bottom: 3px; width: 2px; margin-left: -1px; border-radius: 2px; background: #c08a5d; }
+.bean.k1 { width: 9px; height: 9px; background: var(--honey); }
+.bean.k2 { width: 8px; height: 14px; border-radius: 4px; background: #7cc9a6; }
+.bean.k1::after, .bean.k2::after { display: none; }
+@keyframes fall {
+  from { opacity: 0; transform: translate(0, -20px) rotate(0); }
+  15% { opacity: 1; }
+  to { opacity: 0; transform: translate(var(--dx), 330px) rotate(var(--r)); }
+}

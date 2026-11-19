@@ -1,0 +1,19 @@
+/* Element defaults and page-wide helpers. */
+* { box-sizing: border-box; }
+html { scrollbar-color: var(--line) var(--cream); }
+body {
+  margin: 0; background: var(--cream); color: var(--ink);
+  font: 400 1rem/1.6 var(--body); -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;
+}
+::selection { background: var(--honey); color: var(--ink); }
+:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; border-radius: 8px; }
+a { color: var(--cacao); text-underline-offset: 0.2em; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.05; margin: 0; letter-spacing: -0.01em; }
+button, input, select { font: inherit; color: inherit; }
+
+.wrap { width: min(1080px, 100% - 32px); margin-inline: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

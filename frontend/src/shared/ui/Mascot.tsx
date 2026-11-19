@@ -27,7 +27,7 @@ export function Mascot({ className, mood = 'happy', follow = false }: { classNam
   }, [follow])
 
   return (
-    <svg ref={ref} className={className} viewBox="0 0 260 230" fill="none" stroke={INK} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg ref={ref} className={className ? `mascot ${className}` : 'mascot'} viewBox="0 0 260 230" fill="none" stroke={INK} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <ellipse cx="130" cy="214" rx="92" ry="9" fill={INK} stroke="none" opacity="0.08" />
       <g className="bod">
         {/* body */}
@@ -88,17 +88,5 @@ export function Mascot({ className, mood = 'happy', follow = false }: { classNam
       <path className="steam" d="M214 128c-8-10 8-16 0-26s8-16 0-26" stroke="#c9b6a4" strokeWidth="3.5" />
       <path className="steam s2" d="M232 140c-6-8 6-12 0-20s6-12 0-20" stroke="#c9b6a4" strokeWidth="3" />
     </svg>
-  )
-}
-
-/** A burst of cacao beans and sprinkles. Remount (change key) to replay. */
-export function Beans() {
-  return (
-    <div className="beans" aria-hidden="true">
-      {Array.from({ length: 16 }, (_, i) => (
-        <i key={i} className={`bean k${i % 3}`}
-          style={{ '--x': `${(i * 37) % 100}%`, '--d': `${(i * 53) % 380}ms`, '--r': `${(i * 71) % 360}deg`, '--dx': `${((i * 29) % 60) - 30}px` } as React.CSSProperties} />
-      ))}
-    </div>
   )
 }

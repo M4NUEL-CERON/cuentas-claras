@@ -1,0 +1,106 @@
+/* Home: hero with the self-filling receipt, the create form, recent groups, how it works. */
+
+/* hero: copy pinned to the top so the demo never pushes the title around */
+.hero { display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: start; gap: 32px; padding: 20px 0 56px; }
+.hero-copy { padding-top: 56px; }
+.hero h1 { font-size: clamp(2.8rem, 6.4vw, 4.8rem); font-weight: 800; line-height: 0.98; }
+.hero h1 span { display: block; color: var(--cacao); }
+.lede { font-size: 1.15rem; max-width: 34rem; color: var(--muted); margin: 22px 0 24px; }
+.badges { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.badges li { padding: 6px 14px; border-radius: 999px; background: var(--foam); font-weight: 600; font-size: 0.9rem; }
+
+.hero-art { position: relative; justify-self: center; width: min(100%, 420px); padding: 44px 0 112px; }
+.scribble {
+  position: absolute; top: 0; left: 4px; margin: 0; white-space: nowrap;
+  transform: rotate(-6deg); font: 600 1.45rem/1.1 var(--hand); color: var(--cacao);
+}
+
+/* receipt: every line is rendered from the start and only revealed, so its height never changes */
+.receipt {
+  position: relative; width: calc(100% - 70px); padding: 22px 22px 26px; background: var(--paper); border-radius: 16px 16px 0 0;
+  transform: rotate(-2.5deg); filter: drop-shadow(0 14px 22px var(--receipt-shadow));
+  animation: unroll 0.6s var(--ease); font-variant-numeric: tabular-nums;
+}
+.receipt::after { /* zigzag torn bottom edge */
+  content: ''; position: absolute; left: 0; right: 0; bottom: -10px; height: 10px;
+  background:
+    linear-gradient(-45deg, transparent 7px, var(--paper) 0) 0 0 / 14px 10px repeat-x,
+    linear-gradient(45deg, transparent 7px, var(--paper) 0) 0 0 / 14px 10px repeat-x;
+}
+@keyframes unroll { from { opacity: 0; transform: rotate(-2.5deg) translateY(-12px); } }
+
+.receipt-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 2px dashed var(--line); }
+.receipt-head b { font: 800 1.15rem/1.1 var(--display); }
+.faces { display: flex; }
+.faces .avatar { margin-left: -6px; box-shadow: 0 0 0 2px var(--paper); }
+
+.lines, .moves { list-style: none; margin: 0; padding: 0; }
+.lines { padding: 8px 0; }
+.lines li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 7px 0; }
+.lines li span { font-weight: 700; }
+.lines small { display: block; font-weight: 500; color: var(--muted); font-size: 0.8rem; }
+.lines li, .moves li { visibility: hidden; }
+.lines li.on, .moves li.on { visibility: visible; animation: drop-in 0.45s var(--ease) backwards; }
+.moves li.on + li.on { animation-delay: 0.2s; }
+@keyframes drop-in { from { opacity: 0; transform: translateY(-10px) scale(0.97); } }
+
+.sum { display: flex; justify-content: space-between; align-items: baseline; padding-top: 10px; border-top: 2px solid var(--ink); }
+.sum span { font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+.sum b { font: 800 1.35rem/1 var(--display); }
+.perf { margin: 16px -22px 12px; border-top: 2px dashed var(--line); }
+.who { margin: 0 0 8px; font: 600 0.95rem/1.2 var(--display); color: var(--muted); }
+
+.moves li { display: flex; align-items: center; gap: 8px; padding: 5px 0; }
+.moves b { margin-left: auto; font: 800 1.05rem/1 var(--display); color: var(--mint); }
+.arrow-line { position: relative; width: 46px; height: 2px; background: var(--ink); transform-origin: left; }
+.arrow-line::after { content: ''; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left: 7px solid var(--ink); border-right: 0; }
+.moves li.on .arrow-line { animation: draw 0.5s var(--ease) 0.15s backwards; }
+@keyframes draw { from { transform: scaleX(0); } }
+
+.stamp {
+  position: absolute; left: 14px; bottom: -20px; z-index: 2; padding: 6px 14px;
+  border: 3px solid var(--mint); border-radius: 10px; background: var(--mint-soft); color: var(--mint);
+  font: 800 1.25rem/1 var(--display); transform: rotate(-12deg);
+  animation: stamp 0.45s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+@keyframes stamp { from { opacity: 0; transform: rotate(-12deg) scale(2.2); } }
+
+.chocolo { position: absolute; right: -14px; bottom: -26px; width: 170px; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 40%; }
+.chocolo svg { display: block; width: 100%; height: auto; overflow: visible; transition: transform 0.2s var(--ease); }
+.chocolo:hover svg { transform: rotate(-3deg); }
+
+/* create form */
+.create { --pad: 30px; display: grid; gap: 20px; max-width: 760px; margin-inline: auto; padding: var(--pad); }
+.create-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; }
+.create-head h2 { margin-bottom: 0; }
+.create-head .note { margin: 0; font: 600 1.3rem/1 var(--hand); color: var(--cacao); transform: rotate(-2deg); }
+.create-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 18px; }
+
+/* recent groups */
+.recent { max-width: 760px; margin: 28px auto 0; }
+.recent h3 { font-size: 1.2rem; margin-bottom: 10px; }
+.recent ul { list-style: none; padding: 0; margin: 0 0 8px; display: flex; flex-wrap: wrap; gap: 10px; }
+.recent a { display: inline-block; padding: 8px 16px; border-radius: 12px; background: var(--paper); border: 1.5px solid var(--line); text-decoration: none; font-weight: 600; }
+.recent a:hover { border-color: var(--cacao); }
+
+/* how it works */
+.how { padding-top: 88px; }
+.how h2 { font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 28px; }
+.how ol { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.how h3 { font-size: 1.3rem; margin-bottom: 6px; }
+.how p { margin: 0; color: var(--muted); }
+.step {
+  display: inline-grid; place-items: center; width: 40px; height: 40px; margin-bottom: 12px; border-radius: 50%;
+  background: var(--honey); color: #3b2417; font: 800 1.2rem/1 var(--display);
+}
+
+@media (max-width: 820px) {
+  .hero { grid-template-columns: 1fr; padding-top: 16px; }
+  .hero-copy { padding-top: 0; }
+  .hero-art { width: min(100%, 400px); }
+  .scribble { white-space: normal; transform: rotate(-3deg); font-size: 1.3rem; }
+  .receipt { width: calc(100% - 50px); }
+  .chocolo { width: 140px; right: -6px; }
+  .create { --pad: 20px; }
+  .how ol { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,71 @@
+/* Design tokens. Components read only these, so a theme is just a new set of values. */
+:root {
+  /* surfaces and text */
+  --cream: #fff6ea;
+  --paper: #fffdf8;
+  --foam: #f7e6d0;
+  --ink: #3b2417;
+  --muted: #76594a;
+  --line: #ecdcc8;
+  --line-strong: #dcc4a8;
+  --placeholder: #a8907f;
+
+  /* brand and meaning */
+  --cacao: #6b3a22;
+  --cacao-dark: #552c18;
+  --mint: #1f7a57;
+  --mint-soft: #dff3e9;
+  --berry: #b0382f;
+  --honey: #f2b544;
+
+  /* the dark "who pays whom" card */
+  --settle: #3b2417;
+  --settle-ink: #fffdf8;
+
+  /* type */
+  --display: 'Baloo 2', system-ui, sans-serif;
+  --body: 'DM Sans Variable', system-ui, sans-serif;
+  --hand: 'Caveat', cursive;
+
+  /* shape, depth, motion */
+  --radius: 22px;
+  --shadow: 0 1px 2px rgb(59 36 23 / 0.06), 0 12px 32px -12px rgb(59 36 23 / 0.18);
+  --button-glow: 0 8px 20px -10px rgb(107 58 34 / 0.7);
+  --receipt-shadow: rgb(59 36 23 / 0.16);
+  --mascot-outline: none;
+  --ring: 0 0 0 4px rgb(242 181 68 / 0.35);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%236b3a22' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  color-scheme: light;
+}
+
+/* Dark: a cup of hot chocolate at night. Warm browns, cream text, accents eased down so nothing glares. */
+:root[data-theme='dark'] {
+  --cream: #1c1410;
+  --paper: #271d17;
+  --foam: #3a2b22;
+  --ink: #efe2d2;
+  --muted: #b5a08e;
+  --line: #3f3027;
+  --line-strong: #5a4535;
+  --placeholder: #86715f;
+
+  --cacao: #dba26f;
+  --cacao-dark: #e8b585;
+  --mint: #74cfa4;
+  --mint-soft: #1d3a2e;
+  --berry: #ec8f83;
+  --honey: #e9b04a;
+
+  --settle: #120c09;
+  --settle-ink: #efe2d2;
+
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 14px 34px -14px rgb(0 0 0 / 0.6);
+  --button-glow: 0 8px 22px -12px rgb(219 162 111 / 0.55);
+  --receipt-shadow: rgb(0 0 0 / 0.45);
+  --mascot-outline: drop-shadow(0 0 1px rgb(239 226 210 / 0.35));
+
+  --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23dba26f' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  color-scheme: dark;
+}

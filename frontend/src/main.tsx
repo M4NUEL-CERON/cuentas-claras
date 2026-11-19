@@ -4,8 +4,8 @@ import '@fontsource/baloo-2/latin-600.css'
 import '@fontsource/baloo-2/latin-800.css'
 import '@fontsource-variable/dm-sans/wght.css'
 import '@fontsource/caveat/latin-600.css'
-import './styles.css'
-import { App } from './App'
+import './styles/index.css'
+import { App } from './app/App'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
